@@ -19,11 +19,11 @@ const HomePage = () => {
           <PodcastIcon className="text-white" size={100}/>
         </div>
 
-        <h1 className="text-4xl font-bold text-white text-center">Welcome To PodConnect</h1>
+        <h1 className="text-4xl font-bold text-white text-center">Welcome to Clara AI</h1>
         <p className="text-lg text-gray-300 text-center max-w-md">
-          Connect with fellow podcast enthusiasts, share your favourite episodes,
-          and discover new content together. 
+          Your intelligent AI assistant — chat naturally, get insights instantly, and make smarter decisions.
         </p>
+
 
         {!isSignedIn && (
           <SignInButton mode="modal">
