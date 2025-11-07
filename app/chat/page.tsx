@@ -79,85 +79,87 @@ const ChatPage = () => {
     }
 
    return (
-    <div className="flex min-h-screen overflow-hidden bg-[#0A0F1F] text-white">
+  <div className="flex min-h-screen overflow-hidden bg-[#0A0F1F] text-white">
 
-      {/* Sidebar */}
-      <aside className="hidden md:flex">
-        <Sidebar />
-      </aside>
+    {/* Sidebar */}
+    <aside className="hidden md:flex w-64">
+      <Sidebar />
+    </aside>
 
-      {/* Main content area */}
-      <div className="flex flex-col flex-1 md:ml-64">
+    {/* Main content */}
+    <div className="flex flex-col flex-1">
 
-        {/* Top Navbar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0D1117]/70 backdrop-blur-md">
+      {/* Top Navbar */}
+      <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-white/10 bg-[#0D1117]/70 backdrop-blur-md">
 
-          {/* Mobile menu */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <IoMenu size={22} className="cursor-pointer text-gray-300 hover:text-white transition" />
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0 bg-[#0D1117] text-white w-64">
-                <Sidebar />
-              </SheetContent>
-            </Sheet>
-          </div>
+        {/* Mobile menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <IoMenu size={22} className="cursor-pointer text-gray-300 hover:text-white transition" />
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 bg-[#0D1117] text-white w-64">
+              <Sidebar />
+            </SheetContent>
+          </Sheet>
+        </div>
 
-          <span className="text-2xl font-semibold tracking-wide">Clara AI</span>
+        <span className="text-xl sm:text-2xl font-semibold tracking-wide">Clara AI</span>
 
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-white/10 rounded-full transition">
-              <FaShareAlt size={18} />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <button className="p-2 hover:bg-white/10 rounded-full transition">
+            <FaShareAlt size={18} />
+          </button>
+
+          <UserButton />
+        </div>
+      </div>
+
+      {/* Chat Content */}
+      <div className="flex-1 w-full overflow-y-auto px-3 sm:px-6 py-4 sm:py-6 space-y-4 max-w-4xl mx-auto">
+        {messages.map((msg, idx) => (
+          <MessageBubble key={idx} sender={msg.sender} text={msg.text} />
+        ))}
+
+        {loading && <MessageBubble sender="ai" text="Thinking..." />}
+
+        <div ref={endRef} />
+      </div>
+
+      {/* Chat Input */}
+      <div className="w-full px-3 sm:px-6 py-4 sm:py-5 max-w-4xl mx-auto">
+        <div className="rounded-xl px-3 py-3 sm:px-4 bg-gradient-to-r from-[#111827] to-[#0D1117]
+                        border border-white/10 backdrop-blur-md shadow-xl">
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <IoAdd size={22} className="text-white/70" />
+
+            <input
+              type="text"
+              placeholder="Ask anything..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              className="flex-1 bg-transparent text-white placeholder-white/50 focus:outline-none text-sm sm:text-base"
+            />
+
+            <button
+              onClick={sendMessage}
+              disabled={loading}
+              className="px-3 py-2 sm:px-4 rounded-full flex gap-2 items-center bg-[#4F46E5] hover:bg-[#6366F1]
+                         transition shadow-lg shadow-indigo-600/30 disabled:opacity-50"
+            >
+              <IoSearch size={16} className="text-white" />
+              <span className="hidden sm:block text-sm font-medium">Send</span>
             </button>
-
-            <UserButton />
-          </div>
-        </div>
-
-        {/* Chat Content */}
-        <div className="flex-1 w-full mx-auto overflow-y-auto px-6 py-6 max-w-3xl space-y-4">
-          {messages.map((msg, idx) => (
-            <MessageBubble key={idx} sender={msg.sender} text={msg.text} />
-          ))}
-
-          {loading && <MessageBubble sender="ai" text="Thinking..." />}
-
-          <div ref={endRef} />
-        </div>
-
-        {/* Chat Input */}
-        <div className="px-6 py-5 max-w-3xl mx-auto w-full">
-          <div className="rounded-2xl px-4 py-3 bg-gradient-to-r from-[#111827] to-[#0D1117] border border-white/10 
-                          backdrop-blur-md shadow-xl shadow-[#4F46E5]/10">
-
-            <div className="flex items-center gap-3">
-              <IoAdd size={22} className="text-white/70" />
-
-              <input
-                type="text"
-                placeholder="Ask anything..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                className="flex-1 bg-transparent text-white placeholder-white/50 focus:outline-none"
-              />
-
-              <button
-                onClick={sendMessage}
-                disabled={loading}
-                className="px-4 py-2 rounded-full flex gap-2 items-center bg-[#4F46E5] hover:bg-[#6366F1] 
-                           transition shadow-lg shadow-indigo-600/30"
-              >
-                <IoSearch size={16} className="text-white" />
-                <span className="text-sm font-medium">Send</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
+
     </div>
- );
+  </div>
+);
+
 
 }
 
