@@ -95,7 +95,7 @@ const ChatPage = () => {
                         </SheetContent>
                     </Sheet>
                 </div>
-                <span className='text-xl font-bold'>AI Chat</span>
+                <span className='text-xl font-bold'>Clara AI</span>
                 <div className='flex items-center  gap-4'>
                     <button className='p-2 hover:bg-white/10 rounded-full '>
                         <FaShareAlt size={18}/>
