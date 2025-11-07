@@ -4,7 +4,7 @@ import { FileEdit } from 'lucide-react'
 const Sidebar = () => {
   return (
     <div className='flex flex-col w-64 fixed top-0 left-0 h-screen bg-[#0b1733] border-white/10 text-white border-r '>
-        <div className='p-4 text-xl font-bold'>AI Chat</div>
+        <div className='p-4 text-xl font-bold'>Clara AI</div>
         <div className='mt-4 flex items-center space-x-2 p-4 text-lg font-semibold cursor-pointer '>
             <FileEdit className="w-4 h-4 " />
              <span> New Chat</span>
