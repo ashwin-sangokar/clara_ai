@@ -9,8 +9,8 @@ const font = Inter ({
 });
 
 export const metadata: Metadata = {
-  title: "AI Chat Bot",
-  description: "Simple app created using Next.js and OpenRouter API",
+  title: "Clara AI",
+  description: "Your intelligent AI assistant powered by modern conversational intelligence.",
 };
 
 export default function RootLayout({
